@@ -5,7 +5,9 @@ const bcrypt = require('bcryptjs')
 const userSchema = new Schema({
   userName: String,
   userEmail: String,
-  password: String
+  password: String,
+  portfolio: Object,
+  watchlist: Array
 })
 
 userSchema.methods.serialize = function () {
