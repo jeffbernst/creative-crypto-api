@@ -7,36 +7,14 @@ const bodyparser = require('body-parser')
 const {DATABASE_URL, PORT} = require('./config.js')
 const app = express()
 
-const {router: coursesRouter} = require('./routes/coursesRouter')
-const {router: draftsRouter} = require('./routes/draftsRouter')
 const {router: usersRouter} = require('./routes/usersRouter')
 
 app.use(bodyparser.json())
-
-app.use('/api/courses', coursesRouter)
-app.use('/api/drafts', draftsRouter)
 app.use('/api/users', usersRouter)
-
-mongoose.Promise = global.Promise
-
 app.use(express.static('public', {extensions: ['html', 'htm']}))
 app.use('/node_modules', express.static('node_modules'))
 
-app.get('/course/:courseId', (req, res) => {
-  const options = {
-    root: __dirname + '/public/'
-  }
-
-  res.sendFile('course.html', options)
-})
-
-app.get('/create/:courseId', (req, res) => {
-  const options = {
-    root: __dirname + '/public/'
-  }
-
-  res.sendFile('create.html', options)
-})
+mongoose.Promise = global.Promise
 
 let server
 

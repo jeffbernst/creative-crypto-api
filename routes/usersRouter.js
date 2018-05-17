@@ -171,6 +171,8 @@ router.get('/', jwtAuth, async (req, res) => {
   }
 })
 
+// TODO add endpoint to update user object with portfolio, etc.
+
 module.exports = {
   router
 }
